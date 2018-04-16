@@ -48,7 +48,7 @@ export class Todos extends React.Component<Props, State> {
         {this.props.todos.length ?
           <TodoList todos={this.props.todos} removeTodo={this.props.removeTodo} />
           :
-        <p>Nothing</p>}
+          <p>Nothing</p>}
 
         {this.props.editor ?
 
@@ -66,4 +66,21 @@ export class Todos extends React.Component<Props, State> {
       </div>
     )
   }
+
+  componentDidMount() {
+
+  }
+
+  componentDidUpdate() {
+
+  }
+
+  componentWillReceiveProps() {
+
+  }
+
+  componentWillUnmount() {
+
+  }
+
 }

@@ -7,14 +7,15 @@ import './css/main.css';
 interface State {
   todos: ITodo[];
   archived: ITodo[];
+  tab: string;
 }
 
 class App extends React.Component<{}, State> {
 
   state: State = {
-    todos: [
-    ],
-    archived: []
+    todos: [],
+    archived: [],
+    tab: 'todos'
   }
 
   addTodo = (title: string) => {
@@ -53,26 +54,43 @@ class App extends React.Component<{}, State> {
     }))
   }
 
+  setTab = (tab: string) => {
+    this.setState({tab})
+  }
+
   public render() {
     return (
       <main>
         <div className="container">
           <div className="row">
-            <div className="col">
-              <Todos
-                todos={this.state.todos}
-                editor={true}
-                addTodo={this.addTodo}
-                removeTodo={this.archiveTodo}
-              />
-            </div>
-            <div className="col">
-              <Todos
-                todos={this.state.archived}
-                addTodo={this.addTodo}
-                removeTodo={this.removeTodo}
-              />
-            </div>
+            <nav className="nav">
+              <a className="nav-link" onClick={
+                () => this.setTab('todos')
+              }>Todos</a>
+              <a className="nav-link" onClick={
+                () => this.setTab('archived')
+              }>Archived</a>
+            </nav>
+          </div>
+          <div className="row">
+            {this.state.tab == 'todos' ?
+              <div className="col">
+                <Todos
+                  todos={this.state.todos}
+                  editor={true}
+                  addTodo={this.addTodo}
+                  removeTodo={this.archiveTodo}
+                />
+              </div>
+              :
+              <div className="col">
+                <Todos
+                  todos={this.state.archived}
+                  addTodo={this.addTodo}
+                  removeTodo={this.removeTodo}
+                />
+              </div>
+            }
           </div >
         </div >
       </main >
