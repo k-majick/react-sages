@@ -1,58 +1,56 @@
 import * as React from 'react';
-import { TodoList } from './todos/TodoList';
 import { ITodo } from './todos/todo';
-import { ChangeEvent } from 'react';
+import { Todos } from './todos/Todos';
 import 'bootstrap/dist/css/bootstrap.css';
+import './css/main.css';
 
 interface State {
-  todos: ITodo[],
-  newTitle: string,
-  counter?: number
+  todos: ITodo[];
+  archived: ITodo[];
 }
 
 class App extends React.Component<{}, State> {
 
   state: State = {
     todos: [
-      {
-        id: 123,
-        title: 'Test Todo',
-        completed: false
-      }
-    ] as ITodo[],
-    newTitle: ''
+    ],
+    archived: []
   }
 
-  addTodo() {
+  addTodo = (title: string) => {
     const todo: ITodo = {
       id: Date.now(),
-      title: this.state.newTitle,
+      title,
       completed: false
     }
     console.log(todo);
 
     this.setState(prevState => ({
-      todos: [...prevState.todos, todo],
-      newTitle: ''
+      todos: [...prevState.todos, todo]
     }))
   }
 
-  changeTitle(event: ChangeEvent<HTMLInputElement>) {
-    const value = event.target.value;
-    this.state.newTitle = value;
+  archiveTodo = (id: ITodo['id']) => {
+    this.setState((prevState => {
+      const todo = prevState.todos.find(
+        todo => todo.id == id
+      )
+      return todo ? {
+        todos: prevState.todos.filter(
+          todo => todo.id !== id
+        ),
+        archived: [...prevState.archived, todo]
+      } : null
+    }))
+  }
 
-    this.setState({
-      newTitle: value
-    });
-
-    this.setState(prevState => {
-      return {
-        newTitle: value,
-        counter: prevState.newTitle.length
-      }
-    });
-
-    console.log(this);
+  removeTodo = (id: ITodo['id']) => {
+    console.log('removeTodo', id);
+    this.setState(prevState => ({
+      archived: prevState.archived.filter(
+        todo => todo.id !== id
+      )
+    }))
   }
 
   public render() {
@@ -61,15 +59,19 @@ class App extends React.Component<{}, State> {
         <div className="container">
           <div className="row">
             <div className="col">
-              <h1></h1>
-              <TodoList todos={this.state.todos} />
-              <input className="form-control"
-                value={this.state.newTitle}
-                type="text"
-                onKeyUp={e => e.key == "Enter" && this.addTodo()}
-                onChange={e => this.changeTitle(e)} />
-              <button className="btn btn-default" onClick={e => this.addTodo()}>Add</button>
-              {this.state.newTitle}
+              <Todos
+                todos={this.state.todos}
+                editor={true}
+                addTodo={this.addTodo}
+                removeTodo={this.archiveTodo}
+              />
+            </div>
+            <div className="col">
+              <Todos
+                todos={this.state.archived}
+                addTodo={this.addTodo}
+                removeTodo={this.removeTodo}
+              />
             </div>
           </div >
         </div >
