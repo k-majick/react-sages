@@ -1,14 +1,16 @@
-import { Todo } from "./todo";
-import * as React from 'react-dom';
+import { ITodo } from "./todo";
+import * as React from 'react';
 
 interface Props {
-  todos: Todo[];
+  todos: ITodo[];
 }
 
 export const TodoList = (props: Props) => {
-  return <ul>
+  return <ul className="list-group">
     {props.todos.map(todo =>
-      <li> {todo.title} </li>
+      <li key={todo.id}>
+        {todo.title}
+      </li>
     )}
   </ul>
 }

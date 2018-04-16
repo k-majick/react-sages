@@ -1,7 +1,6 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
-/*
 import App from './App';
 import './index.css';
 import registerServiceWorker from './registerServiceWorker';
@@ -11,8 +10,8 @@ ReactDOM.render(
   document.getElementById('root') as HTMLElement
 );
 registerServiceWorker();
-*/
 
+/*
 const lista = [1,2,3,4,5].reverse()
 
 const Section = (props: { list: any[], title: string }) => {
@@ -33,7 +32,6 @@ setInterval(() => {
 <Section list={lista} title="Todos" />, document.getElementById('root'))
 }, 1000)
 
-/*
 window['React'] = React;
 window['ReactDom'] = ReactDOM;
 */
