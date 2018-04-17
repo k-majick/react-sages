@@ -12,7 +12,8 @@
     "start": "react-scripts-ts start",
     "build": "react-scripts-ts build",
     "test": "react-scripts-ts test --env=jsdom",
-    "eject": "react-scripts-ts eject"
+    "eject": "react-scripts-ts eject",
+    "api": "json-server ./db-1523949764108.json --port 9000"
   },
   "devDependencies": {
     "@types/jest": "^22.2.3",

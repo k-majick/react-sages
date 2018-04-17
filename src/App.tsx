@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { ITodo } from './todos/todo';
 import { Todos } from './todos/Todos';
+import { Users } from './users/Users';
 import 'bootstrap/dist/css/bootstrap.css';
 import './css/main.css';
 
@@ -15,7 +16,7 @@ class App extends React.Component<{}, State> {
   state: State = {
     todos: [],
     archived: [],
-    tab: 'todos'
+    tab: 'users'
   }
 
   addTodo = (title: string) => {
@@ -55,25 +56,26 @@ class App extends React.Component<{}, State> {
   }
 
   setTab = (tab: string) => {
-    this.setState({tab})
+    this.setState({ tab })
   }
 
   public render() {
     return (
       <main>
         <div className="container">
-          <div className="row">
-            <nav className="nav">
-              <a className="nav-link" onClick={
+          <div>
+            <ul className="nav nav-tabs">
+              <li><a className="nav nav-link" onClick={
                 () => this.setTab('todos')
-              }>Todos</a>
-              <a className="nav-link" onClick={
+              }>Todos</a></li>
+              <li><a className="nav-link" onClick={
                 () => this.setTab('archived')
-              }>Archived</a>
-            </nav>
+              }>Users</a></li>
+            </ul>
           </div>
-          <div className="row">
-            {this.state.tab == 'todos' ?
+
+          {this.state.tab == 'todos' ?
+            <div className="row">
               <div className="col">
                 <Todos
                   todos={this.state.todos}
@@ -82,7 +84,6 @@ class App extends React.Component<{}, State> {
                   removeTodo={this.archiveTodo}
                 />
               </div>
-              :
               <div className="col">
                 <Todos
                   todos={this.state.archived}
@@ -90,8 +91,12 @@ class App extends React.Component<{}, State> {
                   removeTodo={this.removeTodo}
                 />
               </div>
-            }
-          </div >
+            </div >
+            :
+            <div>
+                <Users />
+            </div>
+          }
         </div >
       </main >
     );

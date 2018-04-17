@@ -4,7 +4,6 @@ import { ITodo } from './todo';
 import { ChangeEvent } from 'react';
 
 interface State {
-  mainTitle: string,
   newTitle: string
 }
 
@@ -19,7 +18,6 @@ interface Props {
 export class Todos extends React.Component<Props, State> {
 
   state: State = {
-    mainTitle: 'Lista',
     newTitle: ''
   }
 
@@ -43,7 +41,11 @@ export class Todos extends React.Component<Props, State> {
   render() {
     return (
       <div>
-        <h2>{this.state.mainTitle}</h2>
+        {this.props.editor ?
+          <h2>Todos</h2>
+          :
+          <h2>Archived</h2>
+        }
 
         {this.props.todos.length ?
           <TodoList todos={this.props.todos} removeTodo={this.props.removeTodo} />
