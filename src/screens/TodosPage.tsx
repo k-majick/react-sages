@@ -2,6 +2,7 @@ import * as React from 'react';
 import { ITodo } from '../todos/todo';
 //import { Todos } from '../todos/Todos';
 import { CurrentTodos } from '../containers/todos';
+import { ArchivedTodos } from '../containers/archivedTodos';
 
 interface IState {
   todos: ITodo[];
@@ -63,6 +64,7 @@ export class TodosPage extends React.Component<{}, IState> {
           /> */}
         </div>
         <div className="col">
+          <ArchivedTodos />
           {/* <Todos
             todos={this.state.archived}
             addTodo={this.addTodo}

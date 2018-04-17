@@ -2,14 +2,12 @@ import { connect } from 'react-redux';
 import { Todos } from '../todos/Todos';
 import { IState } from '../store';
 import { Dispatch } from 'redux';
-import { createTodo } from '../reducers/todo'
+import { createTodo, deleteTodo } from '../reducers/todo'
 
 const mapStatetoProps = (state: IState) => ({
   title: 'Todos',
   todos: state.todos.current,
-  editor: true,
-  addTodo(title: string) { },
-  removeTodo(id: number) { }
+  editor: true
 })
 
 const mapDispatchToProps = (dispatch: Dispatch<IState>) => ({
@@ -17,11 +15,11 @@ const mapDispatchToProps = (dispatch: Dispatch<IState>) => ({
     dispatch(createTodo(title))
   },
   removeTodo(id: number) {
-
+    dispatch(deleteTodo(id))
   }
 })
 
-export const CurrentTodos = connect(
+export const ArchivedTodos = connect(
   mapStatetoProps,
   mapDispatchToProps
 )(Todos)
