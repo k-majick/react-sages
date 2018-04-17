@@ -22,15 +22,26 @@ export class Users extends React.Component<{}, IState> {
 
   fetchUsers = () => {
     axios.get<IUser[]>('http://localhost:9000/users')
-      .then((response) => {
+      .then((response: any) => {
         this.setState({
           users: response.data
         })
       })
   }
 
-  selectUser = (selected: IUser) => {
+  selectUser = (selected: IUser | null) => {
     this.setState({ selected })
+  }
+
+  saveUser = (user: IUser) => {
+    axios.put<IUser>('http://localhost:9000/users/' + user.id, user)
+      .then((response: any) => {
+        return this.fetchUsers()
+      })
+  }
+
+  cancelEdit = () => {
+    this.selectUser(null)
   }
 
   render() {
@@ -50,9 +61,15 @@ export class Users extends React.Component<{}, IState> {
             }
           </div>
           <div className="col">
-            {this.state.selected && this.state.selected.name}
             {this.state.selected ?
-              <UserForm user={this.state.selected} />
+              <div>
+                <h4>{this.state.selected && this.state.selected.name}</h4>
+                <UserForm
+                  user={this.state.selected}
+                  onSave={this.saveUser}
+                  onCancel={this.cancelEdit}
+                />
+              </div>
               :
               <p>Select user</p>
             }
@@ -64,6 +81,6 @@ export class Users extends React.Component<{}, IState> {
   }
 
   componentDidMount() {
-    this.fetchUsers();
+    this.fetchUsers()
   }
 }
