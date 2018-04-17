@@ -7,7 +7,7 @@ export interface TodosState {
   archived: ITodo[]
 }
 
-const initialTodos: TodosState = {
+export const initialTodos: TodosState = {
   current: [],
   archived: []
 }
@@ -34,4 +34,13 @@ interface ADD_TODO {
 export const addTodo: ActionCreator<ADD_TODO> = (todo: ITodo) => ({
   type: 'ADD_TODO',
   payload: todo
+})
+
+export const createTodo: ActionCreator<ADD_TODO> = (title) => ({
+  type: 'ADD_TODO',
+  payload: {
+      id: Date.now(),
+      title,
+      completed: false
+  }
 })

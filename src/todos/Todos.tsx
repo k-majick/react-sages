@@ -8,9 +8,9 @@ interface State {
 }
 
 interface Props {
-  title?: string;
+  title: string;
   todos: ITodo[],
-  editor?: boolean,
+  editor: boolean,
   addTodo: (title: string) => void,
   removeTodo: (id: ITodo['id']) => void
 }

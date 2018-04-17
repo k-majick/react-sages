@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { ITodo } from '../todos/todo';
-import { Todos } from '../todos/Todos';
+//import { Todos } from '../todos/Todos';
+import { CurrentTodos } from '../containers/todos';
 
 interface IState {
   todos: ITodo[];
@@ -42,7 +43,6 @@ export class TodosPage extends React.Component<{}, IState> {
   }
 
   removeTodo = (id: ITodo['id']) => {
-    console.log('removeTodo', id);
     this.setState(prevState => ({
       archived: prevState.archived.filter(
         todo => todo.id !== id
@@ -54,19 +54,20 @@ export class TodosPage extends React.Component<{}, IState> {
     return (
       <div className="row">
         <div className="col">
-          <Todos
+          <CurrentTodos />
+          {/* <Todos
             todos={this.state.todos}
             editor={true}
             addTodo={this.addTodo}
             removeTodo={this.archiveTodo}
-          />
+          /> */}
         </div>
         <div className="col">
-          <Todos
+          {/* <Todos
             todos={this.state.archived}
             addTodo={this.addTodo}
             removeTodo={this.removeTodo}
-          />
+          />*/}
         </div>
       </div >
     )
