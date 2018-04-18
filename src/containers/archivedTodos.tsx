@@ -5,9 +5,9 @@ import { Dispatch } from 'redux';
 import { createTodo, deleteTodo } from '../reducers/todo'
 
 const mapStatetoProps = (state: IState) => ({
-  title: 'Todos',
+  title: 'Archived',
   todos: state.todos.current,
-  editor: true
+  editor: false
 })
 
 const mapDispatchToProps = (dispatch: Dispatch<IState>) => ({

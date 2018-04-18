@@ -3,9 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@types/redux-promise-middleware": "0.0.10",
     "bootstrap": "^4.1.0",
     "react": "^16.3.1",
     "react-dom": "^16.3.1",
+    "react-router-dom": "^4.2.2",
     "react-scripts-ts": "2.15.1"
   },
   "scripts": {
@@ -21,10 +23,13 @@
     "@types/react": "^16.3.10",
     "@types/react-dom": "^16.0.5",
     "@types/react-redux": "^5.0.16",
+    "@types/react-router-dom": "^4.2.6",
     "axios": "^0.18.0",
     "bootstrap-sass": "^3.3.7",
     "react-redux": "^5.0.7",
     "redux": "^3.7.2",
+    "redux-promise-middleware": "^5.0.0",
+    "redux-thunk": "^2.2.0",
     "typescript": "^2.8.1"
   }
 }

@@ -1,4 +1,3 @@
-
 import { Reducer, ActionCreator } from 'redux';
 import { ITodo } from '../todos/todo';
 
