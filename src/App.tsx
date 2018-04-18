@@ -62,10 +62,4 @@ class App extends React.Component<{}, State> {
 
 export default App;
 
-
-
-/*
-Wifi: Szkolenie React
-pass: tajnepoufne
-goo.gl/mdYPRz
-*/
+//https://bitbucket.org/ev45ive/react-kwiecien
